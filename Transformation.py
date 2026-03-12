@@ -15,9 +15,11 @@ print("Maximum Age : ", max_age)
 
 bins=[0, 15, 30, 45, 60, 75]
 
+data['Age'] = data['Age'].fillna(data['Age'].median())
+
 data["binned_age"]=pd.cut(data["Age"], bins)
 
-print(data[["binned_age", "Age"]]).head()
+print(data[["binned_age", "Age"]].head())
 
 age_labels=["Young", "Young", "Adult", "Middle Age", "Middle Older Age", "Senior"]
 
@@ -26,6 +28,7 @@ data["binned_age"].value_counts().plot(kind="bar")
 plt.title("Dance Class Age Distribution")
 plt.xlabel("Ages")
 plt.ylabel("Count")
+plt.show()
 
 labels=["PassengerId", "Survived", "Pclass", "Age", "SibSp", "Parch", "Fare"]
 for label in labels:
